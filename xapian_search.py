@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import sys
 import xapian
@@ -54,7 +55,7 @@ def log_matches(querystring, offset, pagesize, matches):
 
 if len(sys.argv) < 3:
     if len(sys.argv) > 1:
-        queries = [u"uso energia atomica fim pacifico favor pro contra argumento", u"nome top model supermodel internacional famosa", u"consequencia constitucional Reino Unido constituicao divorcio principe Carlos princesa Diana Gales", u"nome filme Keanu Reeves atua lancado exibido cartaz ator", u"pintura o grito roubada roubo edvard munch galeria nacional oslo", u"quatro casamentos e um funeral bom sucesso popular filme", u"brasil suecia semifinal campeonato mundo 1994 resultado equipe jogo", u"grand slam 1995 campeao vencedor nome pais nacionalidade", u"oscar melhor filme 1994 nome", u"morte richard nixon doenca causa"]
+        queries = [u"uso energia usina nuclear atomica radiacao pacifico bom ruim", u"nome top model supermodel internacional famosa", u"divorcio princesa diana principe carlos gales reino unido constituicao consequencia", u"nome filme Keanu Reeves atua lançado exibido cartaz ator", u"pintura grito roubada misterio edvard munch galeria nacional oslo fevereiro 1994", u"quatro casamentos um funeral bom sucesso popular filme", u"brasil suecia semifinal copa mundo futebol 1994 jogo equipe resultado", u"grand slam tenis wimbledon aberto australia roland garros us open campeao vencedor", u"oscar melhor filme 1994 vencedor ganhador", u"richard nixon morreu causa doença faleceu"]
         for i in range(len(queries)):
             search(dbpath = sys.argv[1], querystring = queries[i], ident = (i+1))
         sys.exit(1)
