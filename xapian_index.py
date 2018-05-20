@@ -15,11 +15,13 @@ def parse_csv_file(datapath, charset='utf8'):
 			yield row
 
 def index(datapath):
-	db = xapian.WritableDatabase("./", xapian.DB_CREATE_OR_OPEN)
+	db = xapian.WritableDatabase("./newdb2/", xapian.DB_CREATE_OR_OPEN)
 
 	# Set up a TermGenerator that we'll use in indexing.
 	termgenerator = xapian.TermGenerator()
 	termgenerator.set_stemmer(xapian.Stem("pt"))
+
+	print(datapath)
 
 	for fields in parse_csv_file(datapath):
 		# 'fields' is a dictionary mapping from field name to value.
@@ -41,15 +43,18 @@ def index(datapath):
 		doc.add_boolean_term(idterm)
 		db.replace_document(idterm, doc)
 
-	print(datapath + " indexed!")
+	#print(datapath + " indexed! - " + str(i))
 
 def walker(path):
 	for root, dirs, files in os.walk(path):
 		if (len(files) < 1):
 			print("No files found")
 			sys.exit(1)
+		i = 0
 		for file_ in files: 
 			index(datapath = os.path.join(root, file_))
+			i+=1
+			print(str(i) + " files indexed.")
 
 if len(sys.argv) != 2:
 	print("Usage: %s DATAPATH" % sys.argv[0])

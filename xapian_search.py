@@ -16,7 +16,7 @@ def search(dbpath, querystring, offset=0, pagesize=100, ident=0):
     queryparser.set_stemmer(xapian.Stem("pt"))
     queryparser.set_stemming_strategy(queryparser.STEM_SOME)
     # Start of prefix configuration.
-    queryparser.add_prefix("text", "XD")
+    #queryparser.add_prefix("text", "XD")
     # End of prefix configuration.
 
     # And parse the query
@@ -55,7 +55,7 @@ def log_matches(querystring, offset, pagesize, matches):
 
 if len(sys.argv) < 3:
     if len(sys.argv) > 1:
-        queries = [u"uso energia usina nuclear atomica radiacao pacifico bom ruim", u"nome top model supermodel internacional famosa", u"divorcio princesa diana principe carlos gales reino unido constituicao consequencia", u"nome filme Keanu Reeves atua lançado exibido cartaz ator", u"pintura grito roubada misterio edvard munch galeria nacional oslo fevereiro 1994", u"quatro casamentos um funeral bom sucesso popular filme", u"brasil suecia semifinal copa mundo futebol 1994 jogo equipe resultado", u"grand slam tenis wimbledon aberto australia roland garros us open campeao vencedor", u"oscar melhor filme 1994 vencedor ganhador", u"richard nixon morreu causa doença faleceu"]
+        queries = [u"uso energia usina nuclear atomica radiacao pacifico bom ruim", u"nome top model supermodel internacional famosa", u"divorcio princesa diana principe carlos gales reino unido constituicao consequencia", u"nome filme Keanu Reeves atua lançado exibido cartaz ator", u"pintura grito roubada misterio edvard munch galeria nacional oslo fevereiro 1994", u"Quatro Casamentos Funeral bom sucesso popular filme", u"brasil suecia semifinal copa mundo futebol 1994 jogo equipe +resultado", u"grand slam tenis wimbledon aberto australia roland garros us open campeao vencedor", u"oscar melhor filme 1994 vencedor ganhador", u"richard nixon morreu causa doença faleceu"]
         for i in range(len(queries)):
             search(dbpath = sys.argv[1], querystring = queries[i], ident = (i+1))
         sys.exit(1)
